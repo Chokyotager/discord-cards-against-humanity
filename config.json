@@ -1,7 +1,7 @@
 {
 
   "credentials": {
-    "bot-token": "NDI5NjMwODIwMzMyODYzNDk5.DbClhA.bxtIjGd9xWi1csIRzZ6WrfNG958"
+    "bot-token": ""
   },
 
   "directories": {
@@ -11,8 +11,8 @@
     "presets": "presets.json"
   },
 
-  "active-channel": "434308077383188481",
-  "chat-channel": "437027706195017730",
+  "active-channel": "",
+  "chat-channel": "",
 
   "roles": {
     "player": "CAH (Players)",
