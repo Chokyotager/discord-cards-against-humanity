@@ -1,0 +1,25 @@
+{
+
+  "default": {"prompts": ["us-*", "expansion-*"], "responses": ["us-*", "expansion-*"]},
+
+  "plain-as-day": {"prompts": ["us-*"], "responses": ["us-*"]},
+
+  "everything": {"prompts": ["*"], "responses": ["*"]},
+
+  "nasty-people": {"prompts": ["cards-against-*", "-cards-against-science", "-cards-against-fanfiction", "-cards-against-astronomy"], "responses": ["cards-against-*", "-cards-against-science", "-cards-against-fanfiction", "-cards-against-astronomy"]},
+
+  "innuendo": {"prompts": ["us-*", "chaos-aghast-vulgarity"], "responses": ["chaos-aghast-vulgarity"]},
+
+  "nerds": {"prompts": ["cards-against-science", "cards-against-mars"], "responses": ["cards-against-science", "cards-against-mars"]},
+
+  "psychology": {"prompts": ["grads-research-psychology-*"], "responses": ["grads-research-psychology-*"]},
+
+  "2016-election": {"prompts": ["2016-election-game"], "responses": ["2016-election-game"]},
+
+  "2016-election-expanded": {"prompts": ["2016-election-game", "humanity-hates-*"], "responses": ["2016-election-game", "humanity-hates-*"]},
+
+  "cards-against-astronomy": {"prompts": ["cards-against-astronomy"], "responses": ["cards-against-astronomy"]},
+
+  "colours": {"prompts": ["expansion-*-box"], "responses": ["expansion-*-box"]}
+
+}
