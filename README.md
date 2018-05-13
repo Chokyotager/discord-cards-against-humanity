@@ -1,7 +1,34 @@
+
 # Discord Misanthropic Petrichor: Cards Against Humanity
+
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/other_server_bot.png?raw=true)
 
 Misanthropic Petrichor is an attempt of an implementation of Cards Against Humanity in Discord. It is coded in JavaScript using the Discord.js library.
 This implementation is **not supported or endorsed by** https://cardsagainsthumanity.com/.
+
+# Features and preview
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/card_selection.png?raw=true)
+
+*Private message card selection*
+
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/czar_selection.png?raw=true)
+
+*Reactions-based Czar card selection*
+
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/name_display.png?raw=true)
+
+*Displaying of names of who's the nastiest after a Czar picks*
+
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/available_preinstalled_decks.png?raw=true)
+
+*Available pre-installed decks*
+
+![](https://github.com/Chokyotager/discord-cards-against-humanity/blob/master/display/in_discord_configuration.png?raw=true)
+
+*In-Discord game configuration*
+
+
+This game is fully automatic and requires no commands to be input during gameplay.
 
 ## Bot set-up
 Clone or download this repository and run it remotely on your server. Please note that you require the minimum Node version **10.1.0** to run this bot.
@@ -40,9 +67,13 @@ Document for command-based configuration: https://docs.google.com/document/d/1IO
 
 I'm reachable through Discord, Twitter, and email.
 
+
 Discord: `ChocoParrot#8925`
+
 Twitter: @ChocoParrotFox
+
 Email: lachocoparrot@gmail.com (I don't check this often)
+
 
 If you need to contact me for anything, Discord is probably the best way.
 
