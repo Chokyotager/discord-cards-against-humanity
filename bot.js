@@ -446,7 +446,11 @@ async function purgeMessages () {
 
   while ((await channel.fetchMessages({ limit: 1 })).array().length >= 1) {
     console.log("Attempting to purge max 100.");
-    await channel.bulkDelete(100, true);
+    var forced_message = (await channel.fetchMessages({ limit: 1 })).array()[0];
+
+    await forced_message.delete();
+
+    await channel.bulkDelete(100, false);
   };
 };
 
@@ -456,7 +460,11 @@ async function purgeChatMessages () {
 
   while ((await channel.fetchMessages({ limit: 1 })).array().length >= 1) {
     console.log("Attempting to purge max 100 on chat.");
-    await channel.bulkDelete(100, true);
+    var forced_message = (await channel.fetchMessages({ limit: 1 })).array()[0];
+
+    await forced_message.delete();
+
+    await channel.bulkDelete(100, false);
   };
 };
 
