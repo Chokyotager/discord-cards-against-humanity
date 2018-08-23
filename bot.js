@@ -371,7 +371,7 @@ async function reset () {
 
 async function blockMain () {
   var channel = client.channels.get(config["active-channel"]);
-  var role = channel.guild.roles.find("name", "@everyone");
+  var role = channel.guild.roles.find(x => x.name === "@everyone");
 
   var perms = {
     READ_MESSAGES: false,
@@ -383,7 +383,7 @@ async function blockMain () {
 
 async function unblockMain () {
   var channel = client.channels.get(config["active-channel"]);
-  var role = channel.guild.roles.find("name", "@everyone");``
+  var role = channel.guild.roles.find(x => x.name === "@everyone");``
 
   var perms = {
     READ_MESSAGES: true,
@@ -398,7 +398,7 @@ async function unblockMain () {
 
 async function addPlayer (userx) {
   var channel = client.channels.get(config["active-channel"]);
-  var role = channel.guild.roles.find("name", config["roles"]["player"]);
+  var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
   await channel.members.get(userx).addRole(role, "[Auto] Game join");
 
@@ -406,7 +406,7 @@ async function addPlayer (userx) {
 
 async function removePlayer (userx) {
   var channel = client.channels.get(config["active-channel"]);
-  var role = channel.guild.roles.find("name", config["roles"]["player"]);
+  var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
   await channel.members.get(userx).removeRole(role, "[Auto] Game kick/leave");
 
@@ -414,7 +414,7 @@ async function removePlayer (userx) {
 
 async function removePlayers () {
   var channel = client.channels.get(config["active-channel"]);
-  var role = channel.guild.roles.find("name", config["roles"]["player"]);
+  var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
   var members = role.members.array();
 
