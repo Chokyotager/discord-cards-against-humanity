@@ -76,5 +76,3 @@ Email: lachocoparrot@gmail.com (I don't check this often)
 
 
 If you need to contact me for anything, Discord is probably the best way.
-
-You can also join my public Discord server that comes with this bot, where you can mess with the bot first before you install it or anything: http://discord.gg/BPDfxCG
