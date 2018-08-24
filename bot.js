@@ -475,7 +475,7 @@ async function removeReactables (message, clearReactions=false, deleteMessage=fa
     };
   };
 
-  if (deleteMessage) {
+  if (deleteMessage && message !== undefined) {
     await message.delete();
   } else if (clearReactions) {
     await message.clearReactions();
