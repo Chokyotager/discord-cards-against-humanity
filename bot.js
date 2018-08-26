@@ -364,6 +364,13 @@ async function reset () {
   await setLobby();
   await purgeMessages();
   await purgeChatMessages();
+
+  await new Promise(function(resolve, reject) {
+    setTimeout(function () {
+      resolve();
+    }, 1000);
+  });
+
   await sendIntro();
   await unblockMain();
   await removePlayers();
