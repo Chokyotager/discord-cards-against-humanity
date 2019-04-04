@@ -11,7 +11,7 @@ var _local = {reactables: new Array(), temp: {}};
 var actions = new Object();
 
 actions.startGame = async function (mr, user) {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var userx = user.id;
 
   if (!_local.lobby.inGame(userx)) {
@@ -26,7 +26,7 @@ actions.startGame = async function (mr, user) {
 
 actions.triggerFlag = async function (mr, user) {
 
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var userx = user.id;
 
   if (_local.lobby.inGame(userx)) {
@@ -36,7 +36,7 @@ actions.triggerFlag = async function (mr, user) {
     removePlayer(userx);
 
     if (_local.temp.pycx !== undefined) {
-      _local.temp.pycx.reactions.get("🏁").remove(user);
+      _local.temp.pycx.reactions.find(x.emoji === "🏁").remove(user);
     };
 
     var current_players = _local.lobby.players.join(', ').length === 0 ? ' ' : toUserX(_local.lobby.players).join(', ');
@@ -76,7 +76,7 @@ actions.triggerFlag = async function (mr, user) {
       if (_local.lobby.players.length === 1) {
         _local.temp.timeoutOpt = setTimeout(function () {
           for (var i = 0; i < _local.lobby.players.length; i++) {
-            channel.members.get(_local.lobby.players[i]).send("Hey! I had to reset the Cards Against Humanity game because it hasn't been started for too long! Join again and start it if you want to play! If you need help with commands, do `c!help` in a main channel! Remember to react to chequered flag to start the game!");
+            channel.members.find(x => x.id === _local.lobby.players[i]).send("Hey! I had to reset the Cards Against Humanity game because it hasn't been started for too long! Join again and start it if you want to play! If you need help with commands, do `c!help` in a main channel! Remember to react to chequered flag to start the game!");
           };
           reset();
         }, 10*60*1000);
@@ -140,8 +140,8 @@ function toUserX (arx) {
 };
 
 function fetchUserX (id) {
-  var channel = client.channels.get(config["active-channel"]);
-  var member = channel.members.get(id);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
+  var member = channel.members.find(x => x.id === id);
 
   return member.user.username + '#' + member.user.discriminator;
 };
@@ -377,7 +377,7 @@ async function reset () {
 };
 
 async function blockMain () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var role = channel.guild.roles.find(x => x.name === "@everyone");
 
   var perms = {
@@ -389,7 +389,7 @@ async function blockMain () {
 };
 
 async function unblockMain () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var role = channel.guild.roles.find(x => x.name === "@everyone");``
 
   var perms = {
@@ -404,7 +404,7 @@ async function unblockMain () {
 };
 
 async function addPlayer (userx) {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
   await channel.members.get(userx).addRole(role, "[Auto] Game join");
@@ -415,12 +415,12 @@ async function removePlayer (userx) {
   var channel = client.channels.get(config["active-channel"]);
   var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
-  await channel.members.get(userx).removeRole(role, "[Auto] Game kick/leave");
+  await channel.members.find(x => x.id === userx).removeRole(role, "[Auto] Game kick/leave");
 
 };
 
 async function removePlayers () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var role = channel.guild.roles.find(x => x.name === config["roles"]["player"]);
 
   var members = role.members.array();
@@ -432,7 +432,7 @@ async function removePlayers () {
 };
 
 async function sendIntro () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var attachment = new Discord.Attachment(fs.readFileSync(path.join(__dirname, "assets/banner.jpg")), 'banner.jpg');
 
   await channel.send(attachment);
@@ -449,7 +449,7 @@ async function sendIntro () {
 
 async function purgeMessages () {
 
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
 
   while ((await channel.fetchMessages({ limit: 1 })).array().length >= 1) {
     console.log("Attempting to purge max 100.");
@@ -463,7 +463,7 @@ async function purgeMessages () {
 
 async function purgeChatMessages () {
 
-  var channel = client.channels.get(config["chat-channel"]);
+  var channel = client.channels.find(x => x.id === config["chat-channel"]);
 
   while ((await channel.fetchMessages({ limit: 1 })).array().length >= 1) {
     console.log("Attempting to purge max 100 on chat.");
@@ -503,7 +503,7 @@ function setLobby () {
 };
 
 async function startGame () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
 
   if (_local.temp.timeoutOpt !== undefined) {
     clearTimeout(_local.temp.timeoutOpt);
@@ -529,7 +529,7 @@ async function startGame () {
 };
 
 async function nextRound () {
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
 
   if (_local.temp.timeoutOpt !== undefined) {
     clearTimeout(_local.temp.timeoutOpt);
@@ -544,7 +544,7 @@ async function nextRound () {
 
 async function round () {
 
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
 
   var game = _local.temp.game;
   var actions = game.next();
@@ -579,7 +579,7 @@ async function round () {
 
       avails += "```\n**You have 60 seconds to pick your card.**";
 
-      var user = channel.members.get(game.players[i].id).user;
+      var user = channel.members.find(x => x.id === game.players[i].id).user;
 
       sendCard(user, actions.prompt, 'BLACK', false);
 
@@ -643,7 +643,7 @@ async function round () {
 
     if (colx.length < 1) {
 
-      channel.members.get(picks[i].id).user.send("You didn't send in your choices, so I randomly picked your response from your choice of white cards! :yum:");
+      channel.members.find(x => x.id === picks[i].id).user.send("You didn't send in your choices, so I randomly picked your response from your choice of white cards! :yum:");
 
       var pick = shuffle(createArx(game.getPlayer(picks[i].id).cards.length));
 
@@ -686,7 +686,7 @@ async function round () {
 
 async function czarPick (czar) {
   var game = _local.temp.game;
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
 
   var presentables = game.presentResponses();
 
@@ -795,7 +795,7 @@ async function czarPick (czar) {
       var embed = new Discord.RichEmbed({title: "White card"});
 
       embed.setColor(colour);
-      embed.setAuthor(fetchUserX(id), channel.members.get(id).user.avatarURL);
+      embed.setAuthor(fetchUserX(id), channel.members.find(x => x.id === id).user.avatarURL);
 
       for (var i = 0; i < contents.length; i++) {
         embed.addField("Card " + (i+1), contents[i], false);
@@ -810,7 +810,7 @@ async function czarPick (czar) {
 
 async function verifyWin () {
 
-  var channel = client.channels.get(config["active-channel"]);
+  var channel = client.channels.find(x => x.id === config["active-channel"]);
   var game = _local.temp.game;
 
   // Continue the game where viable
@@ -829,7 +829,7 @@ async function verifyWin () {
     if (verif.true_win) {
       await channel.send("**" + fetchUserX(verif.winner.id) + "** has won the game! " + wittyQuote());
     } else {
-      await channel.send("**" + toUserX(verif.winner.map(x => x.id)).join(", ") + "** has/have won the game by default due to a lack of players (or *some* people getting kicked, quietttttt). " + wittyQuote());
+      await channel.send("**" + toUserX(verif.winner.map(x => x.id)).join(", ") + "** has/have won the game by default due to a lack of players (or *some* people You win when all threats to the town have been eliminated and you survive to see it.ting kicked, quietttttt). " + wittyQuote());
     };
     await channel.send("Final scores:\n" + createScorePres(false));
 
