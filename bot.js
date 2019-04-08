@@ -340,6 +340,11 @@ async function iterateCommands (msg, command) {
 
       break;
 
+    case "shutdown":
+      msg.channel.send("Forcing bot to stop.");
+      process.exit();
+      break;
+
     case "kick":
       break;
 
@@ -455,6 +460,10 @@ async function purgeMessages () {
     console.log("Attempting to purge max 100.");
     var forced_message = (await channel.fetchMessages({ limit: 1 })).array()[0];
 
+    if (!forced_message) {
+      break;
+    };
+
     await forced_message.delete();
 
     await channel.bulkDelete(100, false);
@@ -468,6 +477,10 @@ async function purgeChatMessages () {
   while ((await channel.fetchMessages({ limit: 1 })).array().length >= 1) {
     console.log("Attempting to purge max 100 on chat.");
     var forced_message = (await channel.fetchMessages({ limit: 1 })).array()[0];
+
+    if (!forced_message) {
+      break;
+    };
 
     await forced_message.delete();
 
