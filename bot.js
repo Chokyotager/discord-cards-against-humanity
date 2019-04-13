@@ -464,9 +464,18 @@ async function purgeMessages () {
       break;
     };
 
-    await forced_message.delete();
+    try {
 
-    await channel.bulkDelete(100, false);
+      await forced_message.delete();
+
+      await channel.bulkDelete(100, false);
+
+    } catch (err) {
+
+      break;
+
+    };
+
   };
 };
 
@@ -482,9 +491,18 @@ async function purgeChatMessages () {
       break;
     };
 
-    await forced_message.delete();
+    try {
 
-    await channel.bulkDelete(100, false);
+      await forced_message.delete();
+
+      await channel.bulkDelete(100, false);
+
+    } catch (err) {
+
+      break;
+
+    };
+    
   };
 };
 
