@@ -368,7 +368,10 @@ async function reset () {
   _local.temp = new Object();
   await setLobby();
   await purgeMessages();
-  await purgeChatMessages();
+
+  if (config["purge-chat-messages"]) {
+    await purgeChatMessages();
+  };
 
   await new Promise(function(resolve, reject) {
     setTimeout(function () {
@@ -502,7 +505,7 @@ async function purgeChatMessages () {
       break;
 
     };
-    
+
   };
 };
 
@@ -633,7 +636,7 @@ async function round () {
         };
 
         if (verifyContent(content)) {
-          x.channel.send("Selection confirmed");
+          x.channel.send("**Selection confirmed.**");
           return true;
         } else {
           return false;
