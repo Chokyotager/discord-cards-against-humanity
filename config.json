@@ -17,6 +17,10 @@
   "roles": {
     "player": "CAH (Players)",
     "spectator": "CAH (Spectators)"
-  }
+  },
+
+  "command-prefix": "c!",
+
+  "purge-chat-messages": false
 
 }

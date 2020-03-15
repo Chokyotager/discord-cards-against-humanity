@@ -40,10 +40,12 @@ You will also need to create a bot user on Discord and add it to your server. I 
 ## Dependencies
 **You have to install Discord.js through NPM**, NodeJS' package manager to run this bot. For help in installing Discord.js, kindly visit: https://discord.js.org/#/.
 
+Please use Discord version 11.6. Versions 12 and above currently do not work.
+
 Other packages used by this module (such as FileSystem) should already be installed by default with NodeJS.
 
 ## Bot configuration
-There is only one configuration file for this bot: `config.json`. Edit it accordingly to suit your needs. It should be pretty self-explanatory, I hope.
+There is only one configuration file for this bot: `config.json`. Edit it accordingly to suit your needs. It should be pretty self-explanatory, I hope. There should also be multiple channel IDs for the chat and for the game.
 
 ## Adding new cards
 

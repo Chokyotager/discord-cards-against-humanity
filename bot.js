@@ -76,7 +76,7 @@ actions.triggerFlag = async function (mr, user) {
       if (_local.lobby.players.length === 1) {
         _local.temp.timeoutOpt = setTimeout(function () {
           for (var i = 0; i < _local.lobby.players.length; i++) {
-            channel.members.find(x => x.id === _local.lobby.players[i]).send("Hey! I had to reset the Cards Against Humanity game because it hasn't been started for too long! Join again and start it if you want to play! If you need help with commands, do `c!help` in a main channel! Remember to react to chequered flag to start the game!");
+            channel.members.find(x => x.id === _local.lobby.players[i]).send("Hey! I had to reset the Cards Against Humanity game because it hasn't been started for too long! Join again and start it if you want to play! If you need help with commands, do `" + config["command-prefix"] + "help` in a main channel! Remember to react to chequered flag to start the game!");
           };
           reset();
         }, 10*60*1000);
@@ -103,11 +103,11 @@ client.on("ready", function () {
 
 client.on("message", function (msg) {
   var checks = msg.author.id !== client.id //&& msg.content.substring(0, 2) === 'c!';
-  var is_command = msg.content.startsWith('c!');
+  var is_command = msg.content.startsWith(config["command-prefix"]);
   var is_in_main = msg.channel.type === 'text';
 
   if (checks && is_command && is_in_main) {
-    var command = msg.content.substring(2, msg.content.length).split(' ');
+    var command = msg.content.substring(config["command-prefix"].length, msg.content.length).split(' ');
     iterateCommands(msg, command);
   };
 
@@ -150,7 +150,7 @@ async function iterateCommands (msg, command) {
 
   switch (command[0]) {
     case "help":
-      msg.channel.send("**__Available commands__** (command prefix: `c!`):\n\nGeneral: `help`, `credits`\nConfiguration: `acr`/`addCardRule`, `ecr`/`emptyCardRules`, `presets`, `preset`, `setConfig`, `cardRules`, `config`, `listPrompts`, `listResponses`\nGame: `startGame`, `resetGame`\n\nConfiguration guide: <https://docs.google.com/document/d/1IOAMHEbOiyRQXrT4d6DHgc31pI-Dh2jvZXrNu2LvyZo/edit?usp=sharing>");
+      msg.channel.send("**__Available commands__** (command prefix: `" + config["command-prefix"] + "`):\n\nGeneral: `help`, `credits`\nConfiguration: `acr`/`addCardRule`, `ecr`/`emptyCardRules`, `presets`, `preset`, `setConfig`, `cardRules`, `config`, `listPrompts`, `listResponses`\nGame: `startGame`, `resetGame`\n\nConfiguration guide: <https://docs.google.com/document/d/1IOAMHEbOiyRQXrT4d6DHgc31pI-Dh2jvZXrNu2LvyZo/edit?usp=sharing>");
       break;
 
     case "credits":
