@@ -734,7 +734,7 @@ async function czarPick (czar) {
   await new Promise(function(resolve, reject) {
     setTimeout(function () {
       resolve();
-    }, 3*1000);
+    }, 60*1000);
   });
 
   channel.send("<@" + czar + "> please pick a card!");
