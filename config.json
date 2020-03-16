@@ -20,7 +20,9 @@
   },
 
   "command-prefix": "c!",
+  "block-channels": false,
 
-  "purge-chat-messages": false
+  "purge-chat-messages": false,
+  "purge-game-messages": true
 
 }

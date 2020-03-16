@@ -367,7 +367,9 @@ async function reset () {
 
   _local.temp = new Object();
   await setLobby();
-  await purgeMessages();
+  if (config["purge-game-messages"]) {
+    await purgeMessages();
+  };
 
   if (config["purge-chat-messages"]) {
     await purgeChatMessages();
@@ -543,7 +545,9 @@ async function startGame () {
     clearTimeout(_local.temp.timeoutOpt);
   };
 
-  await blockMain();
+  if (config["block-channels"]) {
+    await blockMain();
+  };
 
   removeReactables(_local.temp.pycr, clearReactions=true);
   removeReactables(_local.temp.pycx, clearReactions=false, deleteMessage=true);
